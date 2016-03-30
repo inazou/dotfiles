@@ -1,6 +1,6 @@
 # dotfiles
 
 **dotfiles使用法**  
-git clone https://github.com/inazou/dotfiles  
+git clone https://github.com/inazou/dotfiles.git  
 cd dotfiles  
 sh init.sh
