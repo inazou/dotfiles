@@ -7,4 +7,5 @@ do
 	[[ "$f" == ".gitignore" ]] && continue
 
   echo "$f"
+	ln -sf $HOME/dotfiles/$f $HOME/$f
 done
