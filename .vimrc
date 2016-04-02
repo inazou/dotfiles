@@ -8,10 +8,65 @@ set smartindent "オートインデント
 set shiftwidth=2 "タブを挿入するときの幅
 set noexpandtab "タブをスペースとして展開させない
 
-"#####検索設定#####
+"####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan "検索時に最後まで行ったら最初に戻る
+
+"-------------------------------
+" NeoBundleが入っている確認する
+"-------------------------------
+let $VIMBUNDLE = '~/.vim/bundle'
+let $NEOBUNDLEPATH = $VIMBUNDLE . '/neobundle.vim'
+if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
+	" If the NeoBundle doesn't exist.
+	command! NeoBundleInit try | call s:neobundle_init()
+	            \| catch /^neobundleinit:/
+	                \|   echohl ErrorMsg
+	                \|   echomsg v:exception
+	                \|   echohl None
+	                \| endtry
+	
+	function! s:neobundle_init()
+		redraw | echo "Installing neobundle.vim..."
+		if !isdirectory($VIMBUNDLE) 
+			call mkdir($VIMBUNDLE, 'p')
+			echo printf("Creating '%s'.", $VIMBUNDLE)		
+		endif
+		cd $VIMBUNDLE
+
+		if executable('git')
+			call system('git clone git://github.com/Shougo/neobundle.vim')
+			if v:shell_error
+				throw 'neobundleinit: Git error.'
+			endif
+		endif
+
+		set runtimepath& runtimepath+=$NEOBUNDLEPATH
+		call neobundle#rc($VIMBUNDLE)
+		try
+			echo printf("Reloading '%s'", $MYVIMRC)
+			source $MYVIMRC
+		catch
+			echohl ErrorMsg
+			echomsg 'neobundleinit: $MYVIMRC: could not source.'
+			echohl None
+			return 0
+		finally
+			echomsg 'Installed neobundle.vim'
+		endtry
+
+		echomsg 'Finish!'
+	endfunction
+
+	autocmd! VimEnter * redraw
+				\ | echohl WarningMsg
+				\ | echo "You should do ':NeoBundleInit' at first!"
+				\ | echohl None
+endif
+"-----------------------------
+
+
 
 "---------------------------
 " Start Neobundle Settings.
@@ -55,11 +110,19 @@ let g:neocomplcache_dictionary_filetype_lists = {
 inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
+" 十字キーで変換しない
+inoremap <expr><Left>  neocomplcache#cancel_popup() . "\<Left>"
+inoremap <expr><Right> neocomplcache#cancel_popup() . "\<Right>"
+inoremap <expr><Up>    pumvisible() ? "\<C-n>"    : neocomplcache#cancel_popup() . "\<Up>"
+inoremap <expr><Down>  pumvisible() ? "\<C-n>"  : neocomplcache#cancel_popup() . "\<Down>"
+
+" 補完候補が表示されている場合は確定。そうでない場合は改行
+
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-	return neocomplcache#smart_close_popup() . "\<CR>"
+	return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
