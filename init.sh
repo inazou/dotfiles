@@ -3,9 +3,9 @@
 for f in .??*
 do
 	[[ "$f" == ".git" ]] && continue
-  [[ "$f" == ".DS_Store" ]] && continue
+	[[ "$f" == ".DS_Store" ]] && continue
 	[[ "$f" == ".gitignore" ]] && continue
 
-  echo "$f"
+	echo "$f"
 	ln -sf $HOME/dotfiles/$f $HOME/$f
 done
