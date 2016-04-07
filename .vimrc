@@ -160,20 +160,19 @@ NeoBundle 'scrooloose/nerdtree'
 " NERDTeeeの設定
 " --------------------------
 
-"  Ctrl+eで開く
+"  Ctrl+e or F2 で開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <f2> :NERDTreeToggle<CR>
 
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
   
-" デフォルトでツリーを表示させる
-autocmd VimEnter * execute 'NERDTreeToggle'
-
-" Ctrl-wでカーソル移動
-
-"他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" 引数なしでvimを起動した場合ツリーを開く
+" 引数なしで実行したとき、NERDTreeを実行する
+let file_name = expand("%:p")
+if has('vim_starting') &&  file_name == ""
+	autocmd VimEnter * execute 'NERDTreeToggle'
+endif
 "---------------------------
 
 ""NeoBundle 'Shougo/unite.vim'
