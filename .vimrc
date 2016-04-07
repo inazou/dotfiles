@@ -19,6 +19,8 @@ set wrapscan "検索時に最後まで行ったら最初に戻る
 let $VIMBUNDLE = '~/.vim/bundle'
 let $NEOBUNDLEPATH = $VIMBUNDLE . '/neobundle.vim'
 if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
+
+else
 	" If the NeoBundle doesn't exist.
 	command! NeoBundleInit try | call s:neobundle_init()
 	            \| catch /^neobundleinit:/
