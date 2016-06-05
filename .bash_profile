@@ -3,8 +3,6 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-eval "$(rbenv init -)"
-
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/cocos2d-console/bin
