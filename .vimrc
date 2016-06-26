@@ -9,9 +9,6 @@ set shiftwidth=2 "vimが自動でインデントを行った際、設定する�
 set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字の空白に変換するかを設定。
 set expandtab "タブをスペースとして展開
 
-"ファイルの種類によってインデントを変える
-filetype plugin indent on
-
 "####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
@@ -87,7 +84,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 "ここに入れたいプラグインを記入
 
-" neocomplcache
+" neocomplcacheとおまけ
 NeoBundle 'Shougo/neocomplcache'
 
 " PHPコード補完のための辞書
