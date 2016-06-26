@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/sota/.vim'
-let g:netrw_dirhist_2='/usr/local/etc/nginx/servers'
-let g:netrw_dirhist_3='/Users/sota/NetBeansProjects/the-last-dinner.club'
-let g:netrw_dirhist_4='/Users/sota/NetBeansProjects/the-last-dinner.club/app'
-let g:netrw_dirhist_5='/Users/sota/NetBeansProjects/the-last-dinner.club/resources/views/errors'
-let g:netrw_dirhist_6='/Users/sota/.vim/plugin'
