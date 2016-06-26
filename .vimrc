@@ -3,10 +3,14 @@ set number "行番号を表示する
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
-set tabstop=2 "インデントをスペース2つ分に設定
+set tabstop=2 "<TAB>を含むファイルを開いた際、<TAB>を何文字の空白に変換するかを設定。
 set smartindent "オートインデント
-set shiftwidth=2 "タブを挿入するときの幅
+set shiftwidth=2 "vimが自動でインデントを行った際、設定する空白数。
+set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字の空白に変換するかを設定。
 set expandtab "タブをスペースとして展開
+
+"ファイルの種類によってインデントを変える
+filetype plugin indent on
 
 "####検索設定#####
 set ignorecase "大文字/小文字の区別なく検索する
@@ -93,7 +97,8 @@ if !exists('g:neocomplcache_omni_patterns')
 	let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
+" PHPコード補完のための辞書
+autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
