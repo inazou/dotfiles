@@ -90,13 +90,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " neocomplcache
 NeoBundle 'Shougo/neocomplcache'
 
-let g:rsenseHome = '/usr/local/Cellar/rsense/0.3/libexec'
-let g:rsenseUseOmniFunc = 1
-
-if !exists('g:neocomplcache_omni_patterns')
-	let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " PHPコード補完のための辞書
 autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
 " Disable AutoComplPop.
@@ -148,19 +141,6 @@ hi PMenuSbar ctermbg=4
 
 " Ruby向けにendを自動挿入してくれる
 NeoBundle 'tpope/vim-endwise'
-
-" インデントに色を付けて見やすくする
-""NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" 自動カラーを無効にして手動で設定する
-""let g:indent_guides_auto_colors = 0
-" 奇数インデントのガイドカラー
-""hi IndentGuidesOdd  ctermbg=128
-" 偶数インデントのガイドカラー
-""hi IndentGuidesEven ctermbg=171
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-""let g:indent_guides_enable_on_vim_startup = 1
-
 
 " ファイルをtree表示してくれる
 NeoBundle 'scrooloose/nerdtree'
