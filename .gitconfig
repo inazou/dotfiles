@@ -12,8 +12,15 @@
 	dff = diff --word-diff
 	# gitのカレントブランチをpushできる
 	p = !git push origin `git rev-parse --abbrev-ref HEAD`
-[user]
-	name = s.inami
-	email = inami@jfc-co.com
+#[user]
+  #jfc
+  #name = s.inami
+  #email = inami@jfc-co.com
+  
+  #github
+  #name = inazou
+  #email = inami.prs@gmail.com
 [core]
 	editor = /usr/bin/vim
+[user]
+	useConfigOnly = true
