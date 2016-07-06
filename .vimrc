@@ -1,74 +1,94 @@
-"#####表示設定#####
+"---------------------------
+" 表示設定
+"---------------------------
 set number "行番号を表示する
+set laststatus=2 "ステータスラインを表示
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
+
+"---------------------------
+" 挿入モード時、ステータスラインの色を変更
+"---------------------------
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+"---------------------------
+
+"---------------------------
+
+
+
+
+"---------------------------
+" 入力の設定
+"---------------------------
+
+"---------------------------
+" インデントの設定(vimにはFileTypeというオプションがあり、それごとに設定が分けられる)
+"---------------------------
+set smartindent "オートインデント 'gg=G'で一括でインデントを直せる(.vim/indentに個別に設定出来る)
+set expandtab "タブをスペースとして展開
 set tabstop=2 "<TAB>を含むファイルを開いた際、<TAB>を何文字の空白に変換するかを設定。
-set smartindent "オートインデント
 set shiftwidth=2 "vimが自動でインデントを行った際、設定する空白数。
 set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字の空白に変換するかを設定。
-set expandtab "タブをスペースとして展開
+"---------------------------
 
-"####検索設定#####
+"---------------------------
+" クォーテーションを自動で閉じる
+"---------------------------
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+vnoremap " "zdi^V"<C-R>z^V"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
+"---------------------------
+
+"---------------------------
+" カッコを自動で閉じる
+"---------------------------
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap { {}<ESC>i
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [ []<ESC>i
+"---------------------------
+
+"---------------------------
+
+
+"---------------------------
+" 検索の設定
+"---------------------------
 set ignorecase "大文字/小文字の区別なく検索する
 set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan "検索時に最後まで行ったら最初に戻る
-
-"####クリップボード設定#####
-set clipboard=unnamed,autoselect "osレベルのクリップボードを使用
-
-"-------------------------------
-" NeoBundleが入っている確認する
-"-------------------------------
-let $VIMBUNDLE = '~/.vim/bundle'
-let $NEOBUNDLEPATH = $VIMBUNDLE . '/neobundle.vim'
-if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
-	" If the NeoBundle doesn't exist.
-	command! NeoBundleInit try | call s:neobundle_init()
-	            \| catch /^neobundleinit:/
-	                \|   echohl ErrorMsg
-	                \|   echomsg v:exception
-	                \|   echohl None
-	                \| endtry
-	
-	function! s:neobundle_init()
-		redraw | echo "Installing neobundle.vim..."
-		if !isdirectory($VIMBUNDLE) 
-			call mkdir($VIMBUNDLE, 'p')
-			echo printf("Creating '%s'.", $VIMBUNDLE)		
-		endif
-		cd $VIMBUNDLE
-
-		if executable('git')
-			call system('git clone git://github.com/Shougo/neobundle.vim')
-			if v:shell_error
-				throw 'neobundleinit: Git error.'
-			endif
-		endif
-
-		set runtimepath& runtimepath+=$NEOBUNDLEPATH
-		call neobundle#rc($VIMBUNDLE)
-		try
-			echo printf("Reloading '%s'", $MYVIMRC)
-			source $MYVIMRC
-		catch
-			echohl ErrorMsg
-			echomsg 'neobundleinit: $MYVIMRC: could not source.'
-			echohl None
-			return 0
-		finally
-			echomsg 'Installed neobundle.vim'
-		endtry
-
-		echomsg 'Finish!'
-	endfunction
-
-	autocmd! VimEnter * redraw
-				\ | echohl WarningMsg
-				\ | echo "You should do ':NeoBundleInit' at first!"
-				\ | echohl None
-endif
-"-----------------------------
+"---------------------------
 
 
 
@@ -77,18 +97,17 @@ endif
 "---------------------------
 set nocompatible
 if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-
 "ここに入れたいプラグインを記入
 
-" neocomplcacheとおまけ
+"---------------------------
+" neocomplcache コード補完してくれる
+"---------------------------
 NeoBundle 'Shougo/neocomplcache'
 
-" PHPコード補完のための辞書
-autocmd BufRead *.php\|*.ctp\|*.tpl :set dictionary=~/.vim/dictionary/php.dict filetype=php
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -99,10 +118,11 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
+" 別途辞書ファイルがあるときは指定すると読み込む 基本的に.vim/dictionaryに入れる
 let g:neocomplcache_dictionary_filetype_lists = {
-	\ 'default' : ''
-    \ }
+      \ 'default' : '',
+      \ 'php' : $HOME.'/.vim/dictionary/php.dict'
+      \ }
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
@@ -114,13 +134,11 @@ inoremap <expr><Right> neocomplcache#cancel_popup() . "\<Right>"
 inoremap <expr><Up>    pumvisible() ? "\<C-n>"    : neocomplcache#cancel_popup() . "\<Up>"
 inoremap <expr><Down>  pumvisible() ? "\<C-n>"  : neocomplcache#cancel_popup() . "\<Down>"
 
-" 補完候補が表示されている場合は確定。そうでない場合は改行
-
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-	return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -134,120 +152,36 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 hi Pmenu ctermbg=4
 hi PmenuSel ctermbg=1
 hi PMenuSbar ctermbg=4
-
-
-" Ruby向けにendを自動挿入してくれる
-NeoBundle 'tpope/vim-endwise'
-
-" ファイルをtree表示してくれる
-NeoBundle 'scrooloose/nerdtree'
 "---------------------------
-" NERDTeeeの設定
+
+"---------------------------
+" vim-endwise Ruby向けにendを自動挿入してくれる
+" --------------------------
+NeoBundle 'tpope/vim-endwise'
 " --------------------------
 
+"---------------------------
+" NERDTeee ファイルをtree表示してくれる
+" --------------------------
+NeoBundle 'scrooloose/nerdtree'
 "  Ctrl+e or F2 で開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <f2> :NERDTreeToggle<CR>
 
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
-  
+
 " 引数なしでvimを起動した場合ツリーを開く
 " 引数なしで実行したとき、NERDTreeを実行する
 let file_name = expand("%:p")
 if has('vim_starting') &&  file_name == ""
-	autocmd VimEnter * execute 'NERDTreeToggle'
+  autocmd VimEnter * execute 'NERDTreeToggle'
 endif
 "---------------------------
 
-""NeoBundle 'Shougo/unite.vim'
-" Unite.vimで最近使ったファイルを表示できるようにする
-""NeoBundle 'Shougo/neomru.vim'
-
-" http://blog.remora.cx/2010/12/vim-ref-with-unite.html
-"---------------------------
-" Unit.vimの設定
-"----------------------------
-" 入力モードで開始する
-""let g:unite_enable_start_insert=1
-" バッファ一覧
-""noremap <C-P> :Unite buffer<CR>
-" ファイル一覧
-""noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近使ったファイルの一覧
-""noremap <C-Z> :Unite file_mru<CR>
-" sourcesを「今開いているファイルのディレクトリ」とする
-""noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
-" ウィンドウを分割して開く
-""au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-""au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-""au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-""au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-""au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-""au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-"------------------------------
 call neobundle#end()
-filetype plugin indent on
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
 
-"閉じカッコの自動補完
-inoremap ( ()<ESC>i
-inoremap <expr> ) ClosePair(')')
-inoremap { {}<ESC>i
-inoremap <expr> } ClosePair('}')
-inoremap [ []<ESC>i
-inoremap <expr> ] ClosePair(']')
-
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-vnoremap " "zdi^V"<C-R>z^V"<ESC>
-vnoremap ' "zdi'<C-R>z'<ESC>
-
-" pair close checker.
-" " from othree vimrc ( http://github.com/othree/rc/blob/master/osx/.vimrc )
-function ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>" 
-	else
-		return a:char
-	endif
-endf
-
-" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
-""""""""""""""""""""""""""""""
-" 挿入モード時、ステータスラインの色を変更
-""""""""""""""""""""""""""""""
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-if has('syntax')
-	augroup InsertHook
-		autocmd!
-		autocmd InsertEnter * call s:StatusLine('Enter')
-    	autocmd InsertLeave * call s:StatusLine('Leave')
-    augroup END
-endif
-
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-    if a:mode == 'Enter'
-        silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-	    silent exec g:hi_insert
-	else
-	    highlight clear StatusLine
-	    silent exec s:slhlcmd
-	endif
-endfunction
-
-function! s:GetHighlight(hi)
-	redir => hl
-	exec 'highlight '.a:hi
-    redir END
-    let hl = substitute(hl, '[\r\n]', '', 'g')
-    let hl = substitute(hl, 'xxx', '', '')
-	return hl
-endfunction
-""""""""""""""""""""""""""""""
+filetype plugin indent on " .vim/filetype.vimにファイルタイプを書いておくと.vim/ftpluginの設定が読み込める
