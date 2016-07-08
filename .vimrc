@@ -73,7 +73,6 @@ vnoremap ' "zdi'<C-R>z'<ESC>
 " カッコを自動で閉じる
 "---------------------------
 inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
 inoremap { {}<ESC>i
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [ []<ESC>i
@@ -123,6 +122,11 @@ let g:neocomplcache_dictionary_filetype_lists = {
       \ 'default' : '',
       \ 'php' : $HOME.'/.vim/dictionary/php.dict'
       \ }
+" rsence(rubyの辞書を使う設定)
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
@@ -130,9 +134,9 @@ inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " 十字キーで変換しない
 inoremap <expr><Left>  neocomplcache#cancel_popup() . "\<Left>"
-inoremap <expr><Right> neocomplcache#cancel_popup() . "\<Right>"
-inoremap <expr><Up>    pumvisible() ? "\<C-n>"    : neocomplcache#cancel_popup() . "\<Up>"
-inoremap <expr><Down>  pumvisible() ? "\<C-n>"  : neocomplcache#cancel_popup() . "\<Down>"
+inoremap <expr><Right> pumvisible() ? neocomplcache#close_popup() . "\<Right>"    : neocomplcache#cancel_popup() . "\<Right>"
+inoremap <expr><Up>    pumvisible() ? "\<Up>"    : neocomplcache#cancel_popup() . "\<Up>"
+inoremap <expr><Down>  pumvisible() ? "\<Down>"  : neocomplcache#cancel_popup() . "\<Down>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -155,14 +159,29 @@ hi PMenuSbar ctermbg=4
 "---------------------------
 
 "---------------------------
-" vim-endwise Ruby向けにendを自動挿入してくれる
+" rsence Ruby用の辞書 Lazyで遅延ロードしたほうがいいかも
 " --------------------------
-NeoBundle 'tpope/vim-endwise'
+NeoBundle 'NigoroJr/rsense'
+let g:rsenseUseOmniFunc = 1
 " --------------------------
 
 "---------------------------
+" neocomplcache-rsense rsenceをneocomplcacheで使えるようにする
+"---------------------------
+NeoBundle 'Shougo/neocomplcache-rsense.vim', {
+      \ 'depends': ['Shougo/neocomplcache.vim', 'NigoroJr/rsense'],
+      \ }
+"---------------------------
+
+"---------------------------
+" vim-endwise Ruby向けにendを自動挿入してくれる
+"---------------------------
+NeoBundle 'tpope/vim-endwise'
+"---------------------------
+
+"---------------------------
 " NERDTeee ファイルをtree表示してくれる
-" --------------------------
+"---------------------------
 NeoBundle 'scrooloose/nerdtree'
 "  Ctrl+e or F2 で開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>

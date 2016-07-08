@@ -76,6 +76,8 @@
 :NeoComplCacheUnlockSource	neocomplcache.txt	/*:NeoComplCacheUnlockSource*
 <Plug>(neocomplcache_start_quick_match)	neocomplcache.txt	/*<Plug>(neocomplcache_start_quick_match)*
 <Plug>(neocomplcache_start_unite_complete)	neocomplcache.txt	/*<Plug>(neocomplcache_start_unite_complete)*
+CPA	devel.txt	/*CPA*
+Constraints	devel.txt	/*Constraints*
 NERDTree	NERD_tree.txt	/*NERDTree*
 NERDTree-?	NERD_tree.txt	/*NERDTree-?*
 NERDTree-A	NERD_tree.txt	/*NERDTree-A*
@@ -136,6 +138,7 @@ NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
 NERDTreePathListenerAPI	NERD_tree.txt	/*NERDTreePathListenerAPI*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
+Stub	devel.txt	/*Stub*
 b:neocomplcache_sources_list	neocomplcache.txt	/*b:neocomplcache_sources_list*
 buffer_complete	neocomplcache.txt	/*buffer_complete*
 dictionary_complete	neocomplcache.txt	/*dictionary_complete*
@@ -158,6 +161,7 @@ g:neobundle#types#hg#command_path	neobundle.txt	/*g:neobundle#types#hg#command_p
 g:neobundle#types#hg#default_protocol	neobundle.txt	/*g:neobundle#types#hg#default_protocol*
 g:neobundle#types#raw#calc_hash_command	neobundle.txt	/*g:neobundle#types#raw#calc_hash_command*
 g:neobundle#types#svn#command_path	neobundle.txt	/*g:neobundle#types#svn#command_path*
+g:neocomplcache#sources#rsense#home_directory	neocomplcache-rsense.txt	/*g:neocomplcache#sources#rsense#home_directory*
 g:neocomplcache_auto_completion_start_length	neocomplcache.txt	/*g:neocomplcache_auto_completion_start_length*
 g:neocomplcache_caching_limit_file_size	neocomplcache.txt	/*g:neocomplcache_caching_limit_file_size*
 g:neocomplcache_context_filetype_lists	neocomplcache.txt	/*g:neocomplcache_context_filetype_lists*
@@ -370,6 +374,17 @@ neocomplcache-interface	neocomplcache.txt	/*neocomplcache-interface*
 neocomplcache-introduction	neocomplcache.txt	/*neocomplcache-introduction*
 neocomplcache-key-mappings	neocomplcache.txt	/*neocomplcache-key-mappings*
 neocomplcache-notation-{context}	neocomplcache.txt	/*neocomplcache-notation-{context}*
+neocomplcache-rsense-changelog	neocomplcache-rsense.txt	/*neocomplcache-rsense-changelog*
+neocomplcache-rsense-commands	neocomplcache-rsense.txt	/*neocomplcache-rsense-commands*
+neocomplcache-rsense-contents	neocomplcache-rsense.txt	/*neocomplcache-rsense-contents*
+neocomplcache-rsense-examples	neocomplcache-rsense.txt	/*neocomplcache-rsense-examples*
+neocomplcache-rsense-faq	neocomplcache-rsense.txt	/*neocomplcache-rsense-faq*
+neocomplcache-rsense-functions	neocomplcache-rsense.txt	/*neocomplcache-rsense-functions*
+neocomplcache-rsense-install	neocomplcache-rsense.txt	/*neocomplcache-rsense-install*
+neocomplcache-rsense-interface	neocomplcache-rsense.txt	/*neocomplcache-rsense-interface*
+neocomplcache-rsense-introduction	neocomplcache-rsense.txt	/*neocomplcache-rsense-introduction*
+neocomplcache-rsense-variables	neocomplcache-rsense.txt	/*neocomplcache-rsense-variables*
+neocomplcache-rsense.txt	neocomplcache-rsense.txt	/*neocomplcache-rsense.txt*
 neocomplcache-source-attribute-filetypes	neocomplcache.txt	/*neocomplcache-source-attribute-filetypes*
 neocomplcache-source-attribute-finalize	neocomplcache.txt	/*neocomplcache-source-attribute-finalize*
 neocomplcache-source-attribute-gather_candidates	neocomplcache.txt	/*neocomplcache-source-attribute-gather_candidates*
@@ -394,6 +409,7 @@ neocomplcache-user-sources	neocomplcache.txt	/*neocomplcache-user-sources*
 neocomplcache-variables	neocomplcache.txt	/*neocomplcache-variables*
 neocomplcache.txt	neocomplcache.txt	/*neocomplcache.txt*
 omni_complete	neocomplcache.txt	/*omni_complete*
+shared	devel.txt	/*shared*
 syntax_complete	neocomplcache.txt	/*syntax_complete*
 tags_complete	neocomplcache.txt	/*tags_complete*
 unite-action-neobundle-lazy	neobundle.txt	/*unite-action-neobundle-lazy*

@@ -1,4 +1,7 @@
 neobundle.vim
 neocomplcache
+neocomplcache-rsense.vim
+neocomplcache.vim
 nerdtree
+rsense
 vim-endwise
