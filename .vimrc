@@ -107,6 +107,20 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " syntastic ファイル保存時に構文チェック
 "---------------------------
 NeoBundle 'scrooloose/syntastic.git'
+"---------------------------
+
+"---------------------------
+" vimproc 非同期でいろいろ実行できるようにする
+"---------------------------
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'gmake -f make_unix.mak',
+      \    },
+      \ }
+"---------------------------
 
 "---------------------------
 " neocomplcache コード補完してくれる
