@@ -2,4 +2,4 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-echo 'filetype php'
+set tags+=.git/php.tags

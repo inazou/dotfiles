@@ -1,3 +1,4 @@
+auto-ctags.vim
 neobundle.vim
 neocomplcache
 neocomplcache-rsense.vim

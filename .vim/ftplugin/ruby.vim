@@ -2,4 +2,4 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-echo 'filetype ruby'
+set tags+=.git/ruby.tags

@@ -180,6 +180,17 @@ NeoBundle 'Shougo/neocomplcache-rsense.vim', {
 "---------------------------
 
 "---------------------------
+" soramugi/auto-ctags
+" ctags(コードジャンプ出来るようにするやつ)を自動保存してくれる
+"---------------------------
+NeoBundle 'soramugi/auto-ctags.vim'
+let g:auto_ctags = 1 " ファイル保存時にtagsファイルを生成
+let g:auto_ctags_directory_list = ['.git'] "指定したディレクトリに保存する
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes' " ctags実行時のオプション
+let g:auto_ctags_filetype_mode = 1 " 開いているファイルタイプ専用のtagsを作成
+nnoremap <C-j> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+
+"---------------------------
 " vim-endwise Ruby向けにendを自動挿入してくれる
 "---------------------------
 NeoBundle 'tpope/vim-endwise'
