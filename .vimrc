@@ -3,6 +3,7 @@
 "---------------------------
 set number "行番号を表示する
 set laststatus=2 "ステータスラインを表示
+set statusline=%<%F%m%r%h%w\ %y[%{&fenc}][%{&ff}]%=%c/%{col('$')-1},%l/%L%11p%% "ステータスラインの表示設定
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
@@ -101,6 +102,11 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 "ここに入れたいプラグインを記入
+
+"---------------------------
+" syntastic ファイル保存時に構文チェック
+"---------------------------
+NeoBundle 'scrooloose/syntastic.git'
 
 "---------------------------
 " neocomplcache コード補完してくれる
