@@ -121,7 +121,8 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " 別途辞書ファイルがあるときは指定すると読み込む 基本的に.vim/dictionaryに入れる
 let g:neocomplcache_dictionary_filetype_lists = {
       \ 'default' : '',
-      \ 'php' : $HOME.'/.vim/dictionary/php.dict'
+      \ 'php' : $HOME.'/.vim/dictionary/php.dict',
+      \ 'ruby' : $HOME.'/.vim/dictionary/ruby.dict'
       \ }
 
 " Plugin key-mappings.
