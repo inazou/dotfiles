@@ -10,6 +10,7 @@ export PS1="[\u@\h \W]\$(__git_ps1)\[\033[00m\]\n\$"
 
 alias ll="ls -Gla"
 alias g="git"
+alias vi="vim"
 
 # cdしたらlsする
 cdls ()

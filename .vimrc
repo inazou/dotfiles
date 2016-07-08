@@ -50,6 +50,7 @@ endfunction
 "---------------------------
 " 入力の設定
 "---------------------------
+set backspace=indent,eol,start " 何故かバックスペースが効かなくなるのでこれで解消
 
 "---------------------------
 " インデントの設定(vimにはFileTypeというオプションがあり、それごとに設定が分けられる)
@@ -125,60 +126,60 @@ NeoBundle 'Shougo/vimproc', {
 "---------------------------
 " neocomplcache コード補完してくれる
 "---------------------------
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet' " スニペット補完を可能にする
 NeoBundle 'Shougo/neosnippet-snippets'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " 別途辞書ファイルがあるときは指定すると読み込む 基本的に.vim/dictionaryに入れる
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#sources#dictionary#dictionaries = {
       \ 'default' : '',
       \ 'php' : $HOME.'/.vim/dictionary/php.dict'
       \ }
 " rsence(rubyの辞書を使う設定)
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 " タグ補完の呼び出しパターン
-if !exists('g:neocomplcache_member_prefix_patterns')
-  let g:neocomplcache_member_prefix_patterns = {}
+if !exists('g:neocomplete#sources#member#prefix_patterns')
+  let g:neocomplete#sources#member#prefix_patterns = {}
 endif
-let g:neocomplcache_member_prefix_patterns['php'] = '->\|::'
-let g:neocomplcache_member_prefix_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#sources#member#prefix_patterns['php'] = '->\|::'
+let g:neocomplete#sources#member#prefix_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " 十字キーで変換しない
-inoremap <expr><Left>  neocomplcache#cancel_popup() . "\<Left>"
-inoremap <expr><Right> pumvisible() ? neocomplcache#close_popup() . "\<Right>"    : neocomplcache#cancel_popup() . "\<Right>"
-inoremap <expr><Up>    pumvisible() ? "\<Up>"    : neocomplcache#cancel_popup() . "\<Up>"
-inoremap <expr><Down>  pumvisible() ? "\<Down>"  : neocomplcache#cancel_popup() . "\<Down>"
+inoremap <expr><Left>  neocomplete#cancel_popup() . "\<Left>"
+inoremap <expr><Right> pumvisible() ? neocomplete#close_popup() . "\<Right>"    : neocomplete#cancel_popup() . "\<Right>"
+inoremap <expr><Up>    pumvisible() ? "\<Up>"    : neocomplete#cancel_popup() . "\<Up>"
+inoremap <expr><Down>  pumvisible() ? "\<Down>"  : neocomplete#cancel_popup() . "\<Down>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " 保管候補のポップアップの色設定
 hi Pmenu ctermbg=4

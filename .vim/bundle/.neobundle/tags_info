@@ -1,8 +1,8 @@
 auto-ctags.vim
 neobundle.vim
-neocomplcache
 neocomplcache-rsense.vim
 neocomplcache.vim
+neocomplete
 neosnippet
 neosnippet-snippets
 nerdtree
