@@ -10,4 +10,8 @@ $ init.sh
 ```bash
 $ ruby ~/.vim/bundle/rsense/etc/config.rb > ~/.rsense
 ```
+**ctagsを使う時**
+```bash
+$ brew install ctags
+```
 
