@@ -14,4 +14,9 @@ $ ruby ~/.vim/bundle/rsense/etc/config.rb > ~/.rsense
 ```bash
 $ brew install ctags
 ```
+**neocompleteが動かない時**
+```bash
+$ brew install lua
+$ brew reinstall vim --with-lua
+```
 
