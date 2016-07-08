@@ -1,7 +1,13 @@
 # dotfiles
 
 **dotfiles使用法**  
-git clone https://github.com/inazou/dotfiles.git  
-cd dotfiles  
-init.sh
+```bash
+$ git clone https://github.com/inazou/dotfiles.git
+$ cd dotfiles
+$ init.sh
+```
+**rsenceを使う時**
+```bash
+$ ruby ~/.vim/bundle/rsense/etc/config.rb > ~/.rsense
+```
 
