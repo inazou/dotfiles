@@ -3,6 +3,8 @@ neobundle.vim
 neocomplcache
 neocomplcache-rsense.vim
 neocomplcache.vim
+neosnippet
+neosnippet-snippets
 nerdtree
 rsense
 syntastic

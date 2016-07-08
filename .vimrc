@@ -126,7 +126,8 @@ NeoBundle 'Shougo/vimproc', {
 " neocomplcache コード補完してくれる
 "---------------------------
 NeoBundle 'Shougo/neocomplcache'
-
+NeoBundle 'Shougo/neosnippet' " スニペット補完を可能にする
+NeoBundle 'Shougo/neosnippet-snippets'
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -147,6 +148,12 @@ if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" タグ補完の呼び出しパターン
+if !exists('g:neocomplcache_member_prefix_patterns')
+  let g:neocomplcache_member_prefix_patterns = {}
+endif
+let g:neocomplcache_member_prefix_patterns['php'] = '->\|::'
+let g:neocomplcache_member_prefix_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplcache#undo_completion()
@@ -165,7 +172,8 @@ function! s:my_cr_function()
   return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
