@@ -11,10 +11,11 @@ $ init.sh
 $ mkdir -p ~/.vim/bundle
 $ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
-vimを起動して以下を実行する。
+vimを起動して以下を実行する
 ```bash
 :NeoBundleInstall
 ```
+githubのログインを求められる  
 **rsenceを使う時**
 ```bash
 $ ruby ~/.vim/bundle/rsense/etc/config.rb > ~/.rsense
