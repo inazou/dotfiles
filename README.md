@@ -7,6 +7,10 @@ $ cd dotfiles
 $ init.sh
 ```
 NeoBundle  
+```bash
+$ mkdir -p ~/.vim/bundle
+$ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+```
 vimを起動して以下を実行する。
 ```bash
 :NeoBundleInstall
