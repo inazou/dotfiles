@@ -102,12 +102,16 @@ if has('vim_starting')
 endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-"ここに入れたいプラグインを記入
+
+" ~/neobundle.log にログを出力する
+let g:neobundle#log_filename = $HOME . "/neobundle.log"
+
+" ここに入れたいプラグインを記入
 
 "---------------------------
 " syntastic ファイル保存時に構文チェック
 "---------------------------
-NeoBundle 'scrooloose/syntastic.git'
+NeoBundle 'scrooloose/syntastic'
 "---------------------------
 
 "---------------------------
@@ -197,8 +201,8 @@ let g:rsenseUseOmniFunc = 1
 "---------------------------
 " neocomplcache-rsense rsenceをneocomplcacheで使えるようにする
 "---------------------------
-NeoBundle 'Shougo/neocomplcache-rsense.vim', {
-      \ 'depends': ['Shougo/neocomplcache.vim', 'NigoroJr/rsense'],
+NeoBundle 'supermomonga/neocomplete-rsense.vim', {
+      \ 'depends': ['Shougo/neocomplete.vim', 'marcus/rsense'],
       \ }
 "---------------------------
 
