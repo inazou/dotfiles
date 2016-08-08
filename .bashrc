@@ -3,7 +3,18 @@
 # git settings
 source $HOME/.git-prompt.sh
 source $HOME/.git-completion.bash
-GIT_PS1_SHOWDIRTYSTATE=true
+
+# gitの各種情報を表示
+
+# addされてない変更(unstaged)があったとき"*"を表示する、addされているがcommitされていない変更(staged)があったとき"+"を表示する
+GIT_PS1_SHOWDIRTYSTATE=1
+# 現在のブランチがupstreamより進んでいるとき">"を、遅れているとき"<"を、遅れてるけど独自の変更もあるとき"<>"を表示する。
+GIT_PS1_SHOWUPSTREAM=1
+# addされてない新規ファイルがある(untracked)とき"%"を表示する
+GIT_PS1_SHOWUNTRACKEDFILES=1
+# stashになにか入っている(stashed)とき"$"を表示する
+GIT_PS1_SHOWSTASHSTATE=1
+
 
 
 export PS1="[\u@\h \W]\$(__git_ps1)\[\033[00m\]\n\$"
