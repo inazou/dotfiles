@@ -10,8 +10,8 @@
 	stt = status -uno
 	# 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
 	dff = diff --word-diff
-	# gitのカレントブランチをpushできる
-	p = !git push origin `git rev-parse --abbrev-ref HEAD`
+	# gitのカレントブランチをpushできる -uで自動追跡する
+	p = !git push -u origin `git rev-parse --abbrev-ref HEAD`
 #[user]
   #jfc
   #name = s.inami
