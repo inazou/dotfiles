@@ -40,3 +40,8 @@ if [ -d $HOME/.anyenv ] ; then
 		export PATH="$HOME/.anyenv/envs/$D/shims:$PATH"
 	done
 fi
+
+# ログイン時にscreenfetchでロゴ表示
+if [ -e $HOME/dotfiles/screenfetch ] ; then
+  $HOME/dotfiles/screenfetch
+fi
