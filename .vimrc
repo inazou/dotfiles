@@ -63,6 +63,8 @@ set expandtab "タブをスペースとして展開
 set tabstop=2 "<TAB>を含むファイルを開いた際、<TAB>を何文字の空白に変換するかを設定。
 set shiftwidth=2 "vimが自動でインデントを行った際、設定する空白数。
 set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字の空白に変換するかを設定。
+set list "タブや改行を可視化
+set listchars=tab:>_,trail:_,eol:↲,extends:>,precedes:< "可視化されたタブや改行の表示形式
 "---------------------------
 
 "---------------------------
