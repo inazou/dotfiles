@@ -16,6 +16,12 @@ vimを起動して以下を実行する
 :NeoBundleInstall
 ```
 githubのログインを求められる  
+  
+**ruby補完を使う時**
+```bash
+$ gem install rcodetools
+$ gem install fastri
+```
 **ctagsを使う時**
 ```bash
 $ brew install ctags
