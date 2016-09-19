@@ -10,7 +10,7 @@ set statusline=%<%F%m%r%h%w\ %y[%{&fenc}][%{&ff}]%=%c/%{col('$')-1},%l/%L%11p%% 
 set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
-
+set completeopt=menuone "vim補完でScratchを表示しない
 "---------------------------
 " 挿入モード時、ステータスラインの色を変更
 "---------------------------
@@ -108,15 +108,16 @@ NeoBundle 'Shougo/vimproc', {
 "---------------------------
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet' " スニペット補完を可能にする
-NeoBundle 'Shougo/neosnippet-snippets'
-" Disable AutoComplPop.
+NeoBundle 'Shougo/neosnippet-snippets' " スニペットのセット
+" AutoComplPopが入っていたら無効化する
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
+" neocompleteを自動起動
 let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
+" 大文字が入力されるまで大文字と小文字の区別をしない.
 let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
+" シンタックスをキャッシュするときの最小文字長を3にする.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
+" 自動的にロックするバッファ名のパターン
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " 別途辞書ファイルがあるときは指定すると読み込む 基本的に.vim/dictionaryに入れる
@@ -124,62 +125,43 @@ let g:neocomplete#sources#dictionary#dictionaries = {
       \ 'default' : '',
       \ 'php' : $HOME.'/.vim/dictionary/php.dict'
       \ }
-" rsence(rubyの辞書を使う設定)
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" vim-monsterでruby補完する設定
+let g:neocomplete#sources#omni#input_patterns = {
+      \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+      \}
 " タグ補完の呼び出しパターン
 if !exists('g:neocomplete#sources#member#prefix_patterns')
   let g:neocomplete#sources#member#prefix_patterns = {}
 endif
 let g:neocomplete#sources#member#prefix_patterns['php'] = '->\|::'
-let g:neocomplete#sources#member#prefix_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" 十字キーで変換しない
+" 十字キーでの変換動作----------------------------------------------
+" 左は変換を表示しない
 inoremap <expr><Left>  neocomplete#cancel_popup() . "\<Left>"
-inoremap <expr><Right> pumvisible() ? neocomplete#close_popup() . "\<Right>"    : neocomplete#cancel_popup() . "\<Right>"
-inoremap <expr><Up>    pumvisible() ? "\<Up>"    : neocomplete#cancel_popup() . "\<Up>"
-inoremap <expr><Down>  pumvisible() ? "\<Down>"  : neocomplete#cancel_popup() . "\<Down>"
+" 右は変換中なら決定する 変換中でないなら変換を表示しない
+inoremap <expr><Right> pumvisible() ? neocomplete#close_popup() : neocomplete#cancel_popup() . "\<Right>"
+" 上は変換中なら候補を上に移動 変換中でないなら表示しない
+inoremap <expr><Up>    pumvisible() ? "\<Up>" : neocomplete#cancel_popup() . "\<Up>"
+" 下は変換中なら候補を下に移動 変換中でないなら表示しない
+inoremap <expr><Down>  pumvisible() ? "\<Down>" : neocomplete#cancel_popup() . "\<Down>"
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" バックスペースは閉じて１文字消す
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
 
+" tabキーは候補の決定とsnippetの展開
+imap <expr><TAB> pumvisible() ? neocomplete#close_popup() : neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " 保管候補のポップアップの色設定
 hi Pmenu ctermbg=4
 hi PmenuSel ctermbg=1
 hi PMenuSbar ctermbg=4
 "---------------------------
 
-"---------------------------
-" rsence Ruby用の辞書 Lazyで遅延ロードしたほうがいいかも
-" --------------------------
-NeoBundle 'NigoroJr/rsense'
-let g:rsenseUseOmniFunc = 1
-" --------------------------
 
 "---------------------------
-" neocomplcache-rsense rsenceをneocomplcacheで使えるようにする
+" vim-monster ruby補完 gem install rcodetoolsが必要
 "---------------------------
-NeoBundle 'supermomonga/neocomplete-rsense.vim', {
-      \ 'depends': ['Shougo/neocomplete.vim', 'marcus/rsense'],
-      \ }
+NeoBundle "osyo-manga/vim-monster"
 "---------------------------
 
 "---------------------------
