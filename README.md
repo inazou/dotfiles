@@ -16,10 +16,6 @@ vimを起動して以下を実行する
 :NeoBundleInstall
 ```
 githubのログインを求められる  
-**rsenceを使う時**
-```bash
-$ ruby ~/.vim/bundle/rsense/etc/config.rb > ~/.rsense
-```
 **ctagsを使う時**
 ```bash
 $ brew install ctags
