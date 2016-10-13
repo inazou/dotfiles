@@ -57,6 +57,20 @@ set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字
 set list "タブや改行を可視化
 set listchars=tab:>_,trail:_,eol:↲,extends:>,precedes:< "可視化されたタブや改行の表示形式
 set backspace=indent,eol,start " 何故かバックスペースが効かなくなるのでこれで解消
+"---------------------------
+" ペースト時にインデントしてずれないようにする
+"---------------------------
+if &term =~ "xterm"
+  let &t_SI .= "\e[?2004h"
+  let &t_EI .= "\e[?2004l"
+  let &pastetoggle = "\e[201~"
+  function XTermPasteBegin(ret)
+    set paste
+    return a:ret
+  endfunction
+  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+"---------------------------
 "-----------------------------------------------
 
 "-----------------------------------------------
