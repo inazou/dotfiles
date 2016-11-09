@@ -11,6 +11,8 @@
   df = diff
   # 行ごとの差分じゃなくて，単語レベルでの差分を色付きで表示する
   dff = diff --word-diff
+  # ブランチの差分の統計情報だけを表示
+  bdf = diff --stat
   # gitのカレントブランチをpushできる -uで自動追跡する
   p = !git push -u origin `git rev-parse --abbrev-ref HEAD`
   # addした時にすべてのファイルをステージングするか選択する
