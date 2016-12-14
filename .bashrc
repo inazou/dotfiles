@@ -43,5 +43,5 @@ fi
 
 # ログイン時にscreenfetchでロゴ表示
 if [ -e $HOME/dotfiles/screenfetch ] ; then
-  $HOME/dotfiles/screenfetch
+  $HOME/dotfiles/screenfetch -E
 fi
