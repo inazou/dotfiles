@@ -105,6 +105,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 let g:neobundle#log_filename = $HOME . "/neobundle.log"
 
 " ここに入れたいプラグインを記入
+"---------------------------
+" Fugaku vimのカラースキーム
+"---------------------------
+NeoBundle 'tasuten/Fugaku'
+"---------------------------
 
 "---------------------------
 " syntastic ファイル保存時に構文チェック
@@ -226,5 +231,5 @@ call neobundle#end()
 "---------------------------------------------
 " End Neobundle Settings.
 "---------------------------------------------
-
+colorscheme Fugaku
 filetype plugin indent on " .vim/filetype.vimにファイルタイプを書いておくと.vim/ftpluginの設定が読み込める
