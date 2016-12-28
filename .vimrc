@@ -231,5 +231,5 @@ call neobundle#end()
 "---------------------------------------------
 " End Neobundle Settings.
 "---------------------------------------------
-colorscheme Fugaku
+colorscheme Fugaku " カラースキームの設定 call neobundle#end()したあとでないとエラーになる
 filetype plugin indent on " .vim/filetype.vimにファイルタイプを書いておくと.vim/ftpluginの設定が読み込める
