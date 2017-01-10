@@ -226,6 +226,18 @@ if has('vim_starting') &&  file_name == ""
   autocmd VimEnter * execute 'NERDTreeToggle'
 endif
 "---------------------------
+NeoBundle 'vim-jp/vim-java'
+
+"---------------------------
+" vim-javacomplete2 javaの補完拡張
+"---------------------------
+NeoBundle 'artur-shaik/vim-javacomplete2'
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" 保存時にimportされていないものをimportする
+autocmd BufWritePre *.java :JCimportsAddMissing
+" 保存時に使っていないimportを削除する
+autocmd BufWritePre *.java :JCimportsRemoveUnused
+"---------------------------
 
 call neobundle#end()
 "---------------------------------------------
