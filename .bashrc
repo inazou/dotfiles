@@ -48,3 +48,8 @@ fi
 if [ -e $HOME/dotfiles/screenfetch ] ; then
   $HOME/dotfiles/screenfetch -E
 fi
+
+# bash_completion
+if [ -f /usr/local/etc/bash_completion ] ; then
+  . /usr/local/etc/bash_completion
+fi
