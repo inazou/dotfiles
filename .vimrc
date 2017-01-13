@@ -226,7 +226,6 @@ if has('vim_starting') &&  file_name == ""
   autocmd VimEnter * execute 'NERDTreeToggle'
 endif
 "---------------------------
-NeoBundle 'vim-jp/vim-java'
 
 "---------------------------
 " vim-javacomplete2 javaの補完拡張
