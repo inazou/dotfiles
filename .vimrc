@@ -247,6 +247,14 @@ autocmd BufWritePre *.java :JCimportsAddMissing
 autocmd BufWritePre *.java :JCimportsRemoveUnused
 "---------------------------
 
+"---------------------------
+" indentLine インデントの可視化
+"---------------------------
+NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_color_term = 238 "cuiの色
+let g:indentLine_char = '┆' "use ¦, ┆ or │
+"---------------------------
+
 call neobundle#end()
 "---------------------------------------------
 " End Neobundle Settings.
