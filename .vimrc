@@ -236,6 +236,12 @@ endif
 "---------------------------
 
 "---------------------------
+" nerdtree-git-plugin NERDTeeeでgitの状態を表示
+"---------------------------
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+"---------------------------
+
+"---------------------------
 " vim-javacomplete2 javaの補完拡張
 "---------------------------
 NeoBundle 'artur-shaik/vim-javacomplete2'
