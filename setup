@@ -1,11 +1,17 @@
 #!/bin/bash
 
+cd $HOME/dotfiles/
+if [ $? -gt 0 ]; then
+  exit 1
+fi
+
+
 for f in .??*
 do
-	[[ "$f" == ".git" ]] && continue
-	[[ "$f" == ".DS_Store" ]] && continue
-	[[ "$f" == ".gitignore" ]] && continue
+  [[ "$f" == ".git" ]] && continue
+  [[ "$f" == ".DS_Store" ]] && continue
+  [[ "$f" == ".gitignore" ]] && continue
 
-	echo "$f"
-	ln -sf $HOME/dotfiles/$f $HOME/$f
+  echo "$f"
+  ln -sfn $HOME/dotfiles/$f $HOME/$f
 done
