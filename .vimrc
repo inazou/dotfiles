@@ -88,6 +88,8 @@ set hlsearch "検索結果文字列のハイライトを有効にする
 set backup "バックアップをとる
 set backupdir=~/.vim/backup "バックアップファイルを作るディレクトリ
 set directory=~/.vim/swap "スワップファイルを作るディレクトリ
+set undofile "undoの履歴をとる
+set undodir=~/.vim/undo "undoファイルを作るディレクトリ
 "-----------------------------------------------
 
 "-----------------------------------------------
@@ -264,6 +266,16 @@ let g:indentLine_char = '┆' "use ¦, ┆ or │
 " vim-gitgutter gitの差分を表示
 "---------------------------
 NeoBundle 'airblade/vim-gitgutter'
+"---------------------------
+
+"---------------------------
+" Gundo undoの履歴をツリーで表示
+"---------------------------
+NeoBundle 'sjl/gundo.vim'
+" Uで表示
+nnoremap U :GundoToggle<CR>
+" returnしたら自動で閉じる
+let g:gundo_close_on_revert = 1
 "---------------------------
 
 call neobundle#end()

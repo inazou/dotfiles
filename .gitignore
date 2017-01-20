@@ -2,6 +2,7 @@
 *.swp
 .vim/.netrwhist
 .vim/bundle/*
-.vim/backup
-.vim/swap
+.vim/backup/*
+.vim/swap/*
+.vim/undo/*
 !.gitkeep
