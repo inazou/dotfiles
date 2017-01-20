@@ -193,7 +193,6 @@ hi PmenuSel ctermbg=1
 hi PMenuSbar ctermbg=4
 "---------------------------
 
-
 "---------------------------
 " vim-monster ruby補完 gem install rcodetoolsが必要
 "---------------------------
@@ -253,6 +252,12 @@ autocmd BufWritePre *.java :JCimportsRemoveUnused
 NeoBundle 'Yggdroot/indentLine'
 let g:indentLine_color_term = 238 "cuiの色
 let g:indentLine_char = '┆' "use ¦, ┆ or │
+"---------------------------
+
+"---------------------------
+" vim-gitgutter gitの差分を表示
+"---------------------------
+NeoBundle 'airblade/vim-gitgutter'
 "---------------------------
 
 call neobundle#end()
