@@ -35,3 +35,5 @@
   editor = /usr/bin/vim
 [user]
   useConfigOnly = true
+[color]
+  ui = auto
