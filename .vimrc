@@ -278,6 +278,12 @@ nnoremap U :GundoToggle<CR>
 let g:gundo_close_on_revert = 1
 "---------------------------
 
+"---------------------------
+" sudo.vim 自分の.vimrcでsudo viできる
+"---------------------------
+NeoBundle 'vim-scripts/sudo.vim'
+"---------------------------
+
 call neobundle#end()
 "---------------------------------------------
 " End Neobundle Settings.
