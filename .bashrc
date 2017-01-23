@@ -19,7 +19,7 @@ GIT_PS1_SHOWSTASHSTATE=1
 
 export PS1="[\u@\h \W]\$(__git_ps1)\[\033[00m\]\n\$"
 
-alias ll="ls -Gla"
+alias ll="ls -al"
 alias g="git"
 alias vi="vim"
 alias rm="rm -v -i"
