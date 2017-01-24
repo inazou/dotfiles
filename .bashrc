@@ -19,7 +19,15 @@ GIT_PS1_SHOWSTASHSTATE=1
 
 export PS1="[\u@\h \W]\$(__git_ps1)\[\033[00m\]\n\$"
 
-alias ll="ls -al"
+# OS別のalias
+if [ "$(uname)" = 'Darwin' ]; then
+  # macのとき
+  alias ll="ls -Gal"
+else
+  # その他
+  alias ll="ls -al"
+fi
+
 alias g="git"
 alias vi="vim"
 alias rm="rm -v -i"
