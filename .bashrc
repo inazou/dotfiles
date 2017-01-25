@@ -1,5 +1,10 @@
 # .bashrc
 
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
 # git settings
 source $HOME/.git-prompt.sh
 source $HOME/.git-completion.bash
