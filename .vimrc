@@ -113,7 +113,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ~/neobundle.log にログを出力する
-let g:neobundle#log_filename = $HOME . "/neobundle.log"
+let g:neobundle#log_filename = $HOME . "/.vim/bundle/neobundle.log"
 
 " ここに入れたいプラグインを記入
 "---------------------------
