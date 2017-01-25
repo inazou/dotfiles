@@ -11,6 +11,15 @@ set title "編集中のファイル名を表示
 set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
 set completeopt=menuone "vim補完でScratchを表示しない
+
+"---------------------------
+"文字コードの設定
+"---------------------------
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+"---------------------------
+
 "---------------------------
 " 挿入モード時、ステータスラインの色を変更
 "---------------------------
