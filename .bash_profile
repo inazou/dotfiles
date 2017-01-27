@@ -3,6 +3,10 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
+# anyenv
+eval "$(anyenv init -)"
+
+
 PATH=$PATH:$HOME/bin
 export PATH
 
