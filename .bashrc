@@ -9,23 +9,20 @@ fi
 source $HOME/.git-completion.bash
 
 # gitの各種情報を表示(__git_ps1の設定)
-gitps1="true"
-if [ -f $HOME/.git-prompt.sh ]; then
-  source $HOME/.git-prompt.sh
-  # addされてない変更(unstaged)があったとき"*"を表示する、addされているがcommitされていない変更(staged)があったとき"+"を表示する
-  GIT_PS1_SHOWDIRTYSTATE=1
-  # 現在のブランチがupstreamより進んでいるとき">"を、遅れているとき"<"を、遅れてるけど独自の変更もあるとき"<>"を表示する。
-  GIT_PS1_SHOWUPSTREAM=1
-  # addされてない新規ファイルがある(untracked)とき"%"を表示する
-  GIT_PS1_SHOWUNTRACKEDFILES=1
-  # stashになにか入っている(stashed)とき"$"を表示する
-  GIT_PS1_SHOWSTASHSTATE=1
-  gitps1="__git_ps1"
-fi
+source $HOME/.git-prompt.sh
+# addされてない変更(unstaged)があったとき"*"を表示する、addされているがcommitされていない変更(staged)があったとき"+"を表示する
+GIT_PS1_SHOWDIRTYSTATE=1
+# 現在のブランチがupstreamより進んでいるとき">"を、遅れているとき"<"を、遅れてるけど独自の変更もあるとき"<>"を表示する。
+GIT_PS1_SHOWUPSTREAM=1
+# addされてない新規ファイルがある(untracked)とき"%"を表示する
+GIT_PS1_SHOWUNTRACKEDFILES=1
+# stashになにか入っている(stashed)とき"$"を表示する
+GIT_PS1_SHOWSTASHSTATE=1
 
 
 
-export PS1="[\u@\h \W]\$(${gitps1})\[\033[00m\]\n\$"
+
+export PS1="[\u@\h \W]\$(type -t __git_ps1 >& /dev/null && __git_ps1)\[\033[00m\]\n\$"
 
 # OS別のalias
 if [ "$(uname)" = 'Darwin' ]; then
