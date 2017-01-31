@@ -1,10 +1,12 @@
 #.bash_profile
 if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+  . ~/.bashrc
 fi
 
 # anyenv
-eval "$(anyenv init -)"
+if type anyenv > /dev/null 2>&1; then
+  eval "$(anyenv init -)"
+fi
 
 
 PATH=$PATH:$HOME/bin
