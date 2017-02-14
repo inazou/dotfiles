@@ -21,6 +21,8 @@
   cm = commit
   # checkout
   ch=checkout
+  # merge fast-forwardでもコミットする
+  merge=merge --no-ff
 
 
 #[user]
