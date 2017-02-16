@@ -23,6 +23,8 @@
   ch = checkout
   # merge fast-forwardでもコミットする
   mr = merge --no-ff
+  # pull fetch -> rebaseにする
+  pr = pull --rebase
 
 
 #[user]
