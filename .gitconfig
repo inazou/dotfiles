@@ -16,7 +16,7 @@
   # gitのカレントブランチをpushできる -uで自動追跡する
   p = !git push -u origin `git rev-parse --abbrev-ref HEAD`
   # addした時にすべてのファイルをステージングするか選択する
-  ad = add . -p
+  ad = add -p
   # commit
   cm = commit
   # checkout
