@@ -13,6 +13,8 @@
   dff = diff --word-diff
   # ファイルの差分のだけを表示
   fdf = diff --stat
+  # ステージングされたファイルのdiff
+  sdf = diff --cached
   # gitのカレントブランチをpushできる -uで自動追跡する
   p = !git push -u origin `git rev-parse --abbrev-ref HEAD`
   # addした時にすべてのファイルをステージングするか選択する
