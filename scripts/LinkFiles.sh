@@ -1,10 +1,6 @@
 #!/bin/bash
 
-cd $HOME/dotfiles/
-if [ $? -gt 0 ]; then
-  exit 1
-fi
-
+DOT_DIR=`pwd`
 
 for f in .??*
 do
@@ -13,5 +9,5 @@ do
   [[ "$f" == ".gitignore" ]] && continue
 
   echo "$f"
-  ln -sfn $HOME/dotfiles/$f $HOME/$f
+  ln -sfn ${DOT_DIR}/${f} $HOME/${f}
 done

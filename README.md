@@ -4,7 +4,7 @@
 ```bash
 $ git clone https://github.com/inazou/dotfiles.git
 $ cd dotfiles
-$ ./setup
+$ make
 ```
 **NeoBundle**  
 ```bash
