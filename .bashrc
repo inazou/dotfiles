@@ -24,6 +24,9 @@ GIT_PS1_SHOWSTASHSTATE=1
 
 export PS1="[\u@\h \W]\$(type -t __git_ps1 >& /dev/null && __git_ps1)\[\033[00m\]\n\$"
 
+# editor
+export EDITOR=vim
+
 # OS別のalias
 if [ "$(uname)" = 'Darwin' ]; then
   # macのとき
