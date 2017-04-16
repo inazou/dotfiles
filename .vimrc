@@ -137,6 +137,9 @@ NeoBundle 'tasuten/Fugaku'
 " syntastic ファイル保存時に構文チェック
 "---------------------------
 NeoBundle 'scrooloose/syntastic'
+" perlのチェックを有効化
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl', 'podchecker']
 "---------------------------
 
 "---------------------------
@@ -180,11 +183,12 @@ if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" vim-monsterでruby補完する設定
+" タグ補完の呼び出しパターン
 let g:neocomplete#sources#omni#input_patterns = {
       \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+      \   "perl" : '\h\w*->\h\w*\|\h\w*::',
+      \   "php"  : '->\|::'
       \}
-" タグ補完の呼び出しパターン
 if !exists('g:neocomplete#sources#member#prefix_patterns')
   let g:neocomplete#sources#member#prefix_patterns = {}
 endif
@@ -216,6 +220,18 @@ hi PMenuSbar ctermbg=4
 " vim-monster ruby補完 gem install rcodetoolsが必要
 "---------------------------
 NeoBundle "osyo-manga/vim-monster"
+"---------------------------
+
+"---------------------------
+" perlomni perl補完
+"---------------------------
+NeoBundle "c9s/perlomni.vim"
+"---------------------------
+
+"---------------------------
+" vim-perl perlのsyntaxの色
+"---------------------------
+NeoBundle "vim-perl/vim-perl"
 "---------------------------
 
 "---------------------------
