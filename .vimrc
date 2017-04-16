@@ -172,8 +172,14 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " 別途辞書ファイルがあるときは指定すると読み込む 基本的に.vim/dictionaryに入れる
 let g:neocomplete#sources#dictionary#dictionaries = {
       \ 'default' : '',
-      \ 'php' : $HOME.'/.vim/dictionary/php.dict'
+      \ 'php' : $HOME.'/.vim/dictionary/php.dict',
+      \ 'perl': $HOME.'/.vim/dictionary/perl.dict'
       \ }
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " vim-monsterでruby補完する設定
 let g:neocomplete#sources#omni#input_patterns = {
       \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
