@@ -27,13 +27,17 @@
   mr = merge --no-ff
 
 #[user]
-  #jfc
-  #name = s.inami
-  #email = inami@jfc-co.com
+#jfc
+#name = s.inami
+#email = inami@jfc-co.com
 
-  #github
-  #name = inazou
-  #email = inami.prs@gmail.com
+#github
+#name = inazou
+#email = inami.prs@gmail.com
+
+#dena
+#name = sota-inami
+#email = sota.inami@dena.com
 [core]
   editor = /usr/bin/vim
 [user]
