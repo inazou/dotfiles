@@ -252,6 +252,13 @@ NeoBundle 'cohama/lexima.vim'
 "---------------------------
 
 "---------------------------
+" closetag htmlやxmlタグの自動閉じ
+"---------------------------
+NeoBundle 'alvan/vim-closetag'
+let g:closetag_filenames = "*.html,*.xml,*.tx" " 適応する拡張子
+"---------------------------
+
+"---------------------------
 " NERDTeee ファイルをtree表示してくれる
 "---------------------------
 NeoBundle 'scrooloose/nerdtree'
