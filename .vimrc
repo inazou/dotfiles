@@ -8,7 +8,6 @@ set number "行番号を表示する
 set laststatus=2 "ステータスラインを表示
 set statusline=%<%F%m%r%h%w\ %y[%{&fenc}][%{&ff}]%=%c/%{col('$')-1},%l/%L%11p%% "ステータスラインの表示設定
 set title "編集中のファイル名を表示
-set showmatch "括弧入力時の対応する括弧を表示
 syntax on "コードの色分け
 set completeopt=menuone "vim補完でScratchを表示しない
 set t_Co=256 "256色使えるようにする
@@ -256,6 +255,13 @@ NeoBundle 'cohama/lexima.vim'
 "---------------------------
 NeoBundle 'alvan/vim-closetag'
 let g:closetag_filenames = "*.html,*.xml,*.tx" " 適応する拡張子
+"---------------------------
+
+"---------------------------
+" vim-parenmatch 対応するカッコのハイライト
+"---------------------------
+NeoBundle 'itchyny/vim-parenmatch'
+let g:loaded_matchparen = 1
 "---------------------------
 
 "---------------------------
