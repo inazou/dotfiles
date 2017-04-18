@@ -265,6 +265,23 @@ let g:loaded_matchparen = 1
 "---------------------------
 
 "---------------------------
+" vim-parenmatch 対応するタグのハイライト
+"---------------------------
+NeoBundle 'valloric/matchtagalways'
+let g:mta_use_matchparen_group = 1 " オプション機能をONにする
+" 使用するファイルタイプ
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'php' : 1,
+    \ 'tt2html' : 1,
+    \ 'smarty' : 1,
+    \}
+"---------------------------
+
+"---------------------------
 " NERDTeee ファイルをtree表示してくれる
 "---------------------------
 NeoBundle 'scrooloose/nerdtree'
