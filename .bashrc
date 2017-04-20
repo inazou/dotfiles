@@ -5,6 +5,9 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
+# キーバインドをviに
+set -o vi
+
 # git補完
 source $HOME/.git-completion.bash
 
@@ -18,9 +21,6 @@ GIT_PS1_SHOWUPSTREAM=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 # stashになにか入っている(stashed)とき"$"を表示する
 GIT_PS1_SHOWSTASHSTATE=1
-
-
-
 
 export PS1="[\u@\h \W]\$(type -t __git_ps1 >& /dev/null && __git_ps1)\[\033[00m\]\n\$"
 
