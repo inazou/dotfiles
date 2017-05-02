@@ -234,6 +234,12 @@ NeoBundle "vim-perl/vim-perl"
 "---------------------------
 
 "---------------------------
+" vim-javascript-syntax perlのsyntaxの色とインデント(htmlの<script>にも対応)
+"---------------------------
+NeoBundle 'jelera/vim-javascript-syntax'
+"---------------------------
+
+"---------------------------
 " soramugi/auto-ctags
 " ctags(コードジャンプ出来るようにするやつ)を自動保存してくれる
 "---------------------------

@@ -4,5 +4,5 @@ augroup filetypedetect
   au BufRead,BufNewFile *.pl setfiletype perl
   au BufRead,BufNewFile *.pm setfiletype perl
   au BufRead,BufNewFile *.fpl setfiletype perl
-  au BufRead,BufNewFile *.tx setfiletype tt2html
+  au BufRead,BufNewFile *.tx setfiletype html
 augroup END
