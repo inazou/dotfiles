@@ -291,19 +291,20 @@ let g:mta_filetypes = {
 " NERDTeee ファイルをtree表示してくれる
 "---------------------------
 NeoBundle 'scrooloose/nerdtree'
+" タブを開いたときもnerdtreeを常に出してくれる
+NeoBundle 'jistr/vim-nerdtree-tabs'
 "  Ctrl+e or F2 で開く
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-nnoremap <f2> :NERDTreeToggle<CR>
+nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+nnoremap <f2> :NERDTreeTabsToggle<CR>
 
 " 隠しファイルをデフォルトで表示させる
 let NERDTreeShowHidden = 1
 
-" 引数なしでvimを起動した場合ツリーを開く
-" 引数なしで実行したとき、NERDTreeを実行する
-let file_name = expand("%:p")
-if has('vim_starting') &&  file_name == ""
-  autocmd VimEnter * execute 'NERDTreeToggle'
-endif
+" 引数がディレクトリだった時は自動起動
+let g:nerdtree_tabs_open_on_console_startup=2
+
+" 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる
+let g:nerdtree_tabs_autoclose=1
 "---------------------------
 
 "---------------------------
