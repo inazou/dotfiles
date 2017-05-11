@@ -54,6 +54,16 @@ function! s:GetHighlight(hi)
   return hl
 endfunction
 "---------------------------
+
+"---------------------------
+" 外部で変更のあったファイルを自動的に読み直す
+"---------------------------
+set autoread
+augroup vimrc-checktime
+  autocmd!
+  autocmd WinEnter * checktime
+augroup END
+"---------------------------
 "-----------------------------------------------
 
 "-----------------------------------------------
