@@ -38,6 +38,7 @@ fi
 
 alias g="git"
 alias vi="vim"
+alias vid="vi ./"
 alias rm="rm -v -i"
 alias cp="cp -v -i"
 alias mv="mv -v -i"
