@@ -42,7 +42,7 @@ alias vid="vi ./"
 alias rm="rm -v -i"
 alias cp="cp -v -i"
 alias mv="mv -v -i"
-
+alias sudo="sudo "
 # cdしたらlsする
 cdls ()
 {
