@@ -250,6 +250,13 @@ NeoBundle "c9s/perlomni.vim"
 "---------------------------
 
 "---------------------------
+" SQLComplete.vim sql補完
+"---------------------------
+NeoBundle "vim-scripts/SQLComplete.vim"
+NeoBundle "vim-scripts/dbext.vim"
+"---------------------------
+
+"---------------------------
 " vim-perl perlのsyntaxの色
 "---------------------------
 NeoBundle "vim-perl/vim-perl"
