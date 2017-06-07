@@ -80,6 +80,8 @@ set softtabstop=2 "キーボードで<TAB>を入力した際、<TAB>を何文字
 set list "タブや改行を可視化
 set listchars=tab:>_,trail:_,eol:↲,extends:>,precedes:< "可視化されたタブや改行の表示形式
 set backspace=indent,eol,start " 何故かバックスペースが効かなくなるのでこれで解消
+set mouse=a
+set ttymouse=xterm2
 "---------------------------
 " ペースト時にインデントしてずれないようにする
 "---------------------------
