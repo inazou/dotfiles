@@ -4,6 +4,9 @@
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
+# dotfilesにパスを通す
+PATH=$PATH:$HOME/dotfiles/bin
+export PATH
 
 # git補完
 source $HOME/.git-completion.bash
@@ -67,6 +70,6 @@ if [ -f /usr/local/etc/bash_completion ] ; then
 fi
 
 # ログイン時にscreenfetchでロゴ表示
-if [ -f $HOME/dotfiles/screenfetch ] ; then
-  $HOME/dotfiles/screenfetch -E
+if type screenfetch >/dev/null 2>&1; then
+  screenfetch -E
 fi
