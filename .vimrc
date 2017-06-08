@@ -85,15 +85,42 @@ set ttymouse=xterm2
 "---------------------------
 " ペースト時にインデントしてずれないようにする
 "---------------------------
-if &term =~ "xterm"
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-  function XTermPasteBegin(ret)
-    set paste
-    return a:ret
-  endfunction
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+if has("patch-8.0.0238")
+    " Bracketed Paste Mode対応バージョン(8.0.0238以降)では、特に設定しない
+    " 場合はTERMがxtermの時のみBracketed Paste Modeが使われる。
+    " tmux利用時はTERMがscreenなので、Bracketed Paste Modeを利用するには
+    " 以下の設定が必要となる。
+    if &term =~ "screen"
+        let &t_BE = "\e[?2004h"
+        let &t_BD = "\e[?2004l"
+        exec "set t_PS=\e[200~"
+        exec "set t_PE=\e[201~"
+    endif
+else
+    " 8.0.0210 ～ 8.0.0237 ではVim本体でのBracketed Paste Mode対応の挙動が
+    " 望ましくない(自動インデントが無効にならない)ので、Vim本体側での対応を
+    " 無効にする。
+    if has("patch-8.0.0210")
+        set t_BE=
+    endif
+
+    " Vim本体がBracketed Paste Modeに対応していない時の為の設定。
+    if &term =~ "xterm" || &term =~ "screen"
+        let &t_ti .= "\e[?2004h"
+        let &t_te .= "\e[?2004l"
+
+        function XTermPasteBegin(ret)
+            set pastetoggle=<Esc>[201~
+            set paste
+            return a:ret
+        endfunction
+
+        noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+        inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+        vnoremap <special> <expr> <Esc>[200~ XTermPasteBegin("c")
+        cnoremap <special> <Esc>[200~ <nop>
+        cnoremap <special> <Esc>[201~ <nop>
+    endif
 endif
 "---------------------------
 "-----------------------------------------------
