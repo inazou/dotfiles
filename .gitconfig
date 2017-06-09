@@ -25,6 +25,8 @@
   ch = checkout
   # merge fast-forwardでもコミットする
   mr = merge --no-ff
+  # grep
+  g = grep -H --heading --break
 
 #[user]
 #jfc
@@ -49,3 +51,6 @@
   # mergetoolを使ったときに.origを作らない
   keepBackup = false
 
+[grep]
+  # grepで行番号を表示
+  lineNumber = true
