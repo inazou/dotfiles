@@ -319,6 +319,12 @@ NeoBundle "vim-perl/vim-perl"
 "---------------------------
 
 "---------------------------
+" vim-perltidy perlのインデントを整える
+"---------------------------
+NeoBundle "rdunklau/vim-perltidy"
+"---------------------------
+
+"---------------------------
 " vim-javascript-syntax perlのsyntaxの色とインデント(htmlの<script>にも対応)
 "---------------------------
 NeoBundle 'jelera/vim-javascript-syntax'
