@@ -1,5 +1,5 @@
 "============================================================================
-"File:        perl.vim
+"File:        srsys_perl.vim
 "Description: Syntax checking plugin for syntastic
 "Maintainer:  Anthony Carapetis <anthony.carapetis at gmail dot com>,
 "             Eric Harmon <http://eharmon.net>
@@ -27,10 +27,10 @@
 "
 " - http://perldoc.perl.org/perlrun.html#*-c*
 
-if exists('g:loaded_syntastic_perl_perl_checker')
+if exists('g:loaded_syntastic_perl_srsys_perl_checker')
     finish
 endif
-let g:loaded_syntastic_perl_perl_checker = 1
+let g:loaded_syntastic_perl_srsys_perl_checker = 1
 
 if !exists('g:syntastic_perl_lib_path')
     let g:syntastic_perl_lib_path = []
