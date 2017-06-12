@@ -215,7 +215,7 @@ NeoBundle 'tasuten/Fugaku'
 NeoBundle 'scrooloose/syntastic'
 " perlのチェックを有効化
 let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['srsys_perl', 'perl', 'podchecker']
+let g:syntastic_perl_checkers = ['srsys_perl', 'podchecker']
 let g:syntastic_perl_lib_path = ['lib/', 'local/lib/perl5/']
 "---------------------------
 
@@ -316,12 +316,6 @@ NeoBundle "vim-scripts/dbext.vim"
 " vim-perl perlのsyntaxの色
 "---------------------------
 NeoBundle "vim-perl/vim-perl"
-"---------------------------
-
-"---------------------------
-" vim-perltidy perlのインデントを整える
-"---------------------------
-NeoBundle "rdunklau/vim-perltidy"
 "---------------------------
 
 "---------------------------
