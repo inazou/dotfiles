@@ -86,41 +86,41 @@ set ttymouse=xterm2
 " ペースト時にインデントしてずれないようにする
 "---------------------------
 if has("patch-8.0.0238")
-    " Bracketed Paste Mode対応バージョン(8.0.0238以降)では、特に設定しない
-    " 場合はTERMがxtermの時のみBracketed Paste Modeが使われる。
-    " tmux利用時はTERMがscreenなので、Bracketed Paste Modeを利用するには
-    " 以下の設定が必要となる。
-    if &term =~ "screen"
-        let &t_BE = "\e[?2004h"
-        let &t_BD = "\e[?2004l"
-        exec "set t_PS=\e[200~"
-        exec "set t_PE=\e[201~"
-    endif
+  " Bracketed Paste Mode対応バージョン(8.0.0238以降)では、特に設定しない
+  " 場合はTERMがxtermの時のみBracketed Paste Modeが使われる。
+  " tmux利用時はTERMがscreenなので、Bracketed Paste Modeを利用するには
+  " 以下の設定が必要となる。
+  if &term =~ "screen"
+    let &t_BE = "\e[?2004h"
+    let &t_BD = "\e[?2004l"
+    exec "set t_PS=\e[200~"
+    exec "set t_PE=\e[201~"
+  endif
 else
-    " 8.0.0210 ～ 8.0.0237 ではVim本体でのBracketed Paste Mode対応の挙動が
-    " 望ましくない(自動インデントが無効にならない)ので、Vim本体側での対応を
-    " 無効にする。
-    if has("patch-8.0.0210")
-        set t_BE=
-    endif
+  " 8.0.0210 ～ 8.0.0237 ではVim本体でのBracketed Paste Mode対応の挙動が
+  " 望ましくない(自動インデントが無効にならない)ので、Vim本体側での対応を
+  " 無効にする。
+  if has("patch-8.0.0210")
+    set t_BE=
+  endif
 
-    " Vim本体がBracketed Paste Modeに対応していない時の為の設定。
-    if &term =~ "xterm" || &term =~ "screen"
-        let &t_ti .= "\e[?2004h"
-        let &t_te .= "\e[?2004l"
+  " Vim本体がBracketed Paste Modeに対応していない時の為の設定。
+  if &term =~ "xterm" || &term =~ "screen"
+    let &t_ti .= "\e[?2004h"
+    let &t_te .= "\e[?2004l"
 
-        function XTermPasteBegin(ret)
-            set pastetoggle=<Esc>[201~
-            set paste
-            return a:ret
-        endfunction
+    function XTermPasteBegin(ret)
+      set pastetoggle=<Esc>[201~
+      set paste
+      return a:ret
+    endfunction
 
-        noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-        inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-        vnoremap <special> <expr> <Esc>[200~ XTermPasteBegin("c")
-        cnoremap <special> <Esc>[200~ <nop>
-        cnoremap <special> <Esc>[201~ <nop>
-    endif
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    vnoremap <special> <expr> <Esc>[200~ XTermPasteBegin("c")
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
+  endif
 endif
 "---------------------------
 "-----------------------------------------------
@@ -163,29 +163,29 @@ nnoremap <Up> gk
 set virtualedit=block " 文字のないところにカーソル移動
 " tmuxだとキー入力がおかしくなるので対応
 if &term =~ '^screen' && exists('$TMUX')
-    " tmux will send xterm-style keys when xterm-keys is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-    execute "set <xHome>=\e[1;*H"
-    execute "set <xEnd>=\e[1;*F"
-    execute "set <Insert>=\e[2;*~"
-    execute "set <Delete>=\e[3;*~"
-    execute "set <PageUp>=\e[5;*~"
-    execute "set <PageDown>=\e[6;*~"
-    execute "set <xF1>=\e[1;*P"
-    execute "set <xF2>=\e[1;*Q"
-    execute "set <xF3>=\e[1;*R"
-    execute "set <xF4>=\e[1;*S"
-    execute "set <F5>=\e[15;*~"
-    execute "set <F6>=\e[17;*~"
-    execute "set <F7>=\e[18;*~"
-    execute "set <F8>=\e[19;*~"
-    execute "set <F9>=\e[20;*~"
-    execute "set <F10>=\e[21;*~"
-    execute "set <F11>=\e[23;*~"
-    execute "set <F12>=\e[24;*~"
+  " tmux will send xterm-style keys when xterm-keys is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+  execute "set <xHome>=\e[1;*H"
+  execute "set <xEnd>=\e[1;*F"
+  execute "set <Insert>=\e[2;*~"
+  execute "set <Delete>=\e[3;*~"
+  execute "set <PageUp>=\e[5;*~"
+  execute "set <PageDown>=\e[6;*~"
+  execute "set <xF1>=\e[1;*P"
+  execute "set <xF2>=\e[1;*Q"
+  execute "set <xF3>=\e[1;*R"
+  execute "set <xF4>=\e[1;*S"
+  execute "set <F5>=\e[15;*~"
+  execute "set <F6>=\e[17;*~"
+  execute "set <F7>=\e[18;*~"
+  execute "set <F8>=\e[19;*~"
+  execute "set <F9>=\e[20;*~"
+  execute "set <F10>=\e[21;*~"
+  execute "set <F11>=\e[23;*~"
+  execute "set <F12>=\e[24;*~"
 endif
 "-----------------------------------------------
 
@@ -215,7 +215,11 @@ NeoBundle 'tasuten/Fugaku'
 NeoBundle 'scrooloose/syntastic'
 " perlのチェックを有効化
 let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['srsys_perl', 'podchecker']
+if executable('srsys_perl')
+  let g:syntastic_perl_checkers = ['srsys_perl', 'podchecker']
+else
+  let g:syntastic_perl_checkers = ['perl', 'podchecker']
+endif
 let g:syntastic_perl_lib_path = ['lib/', 'local/lib/perl5/']
 "---------------------------
 
