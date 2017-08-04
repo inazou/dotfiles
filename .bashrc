@@ -71,5 +71,10 @@ fi
 
 # ログイン時にscreenfetchでロゴ表示
 if type screenfetch >/dev/null 2>&1; then
-  screenfetch -E
+  WIDTH=`tput cols`
+  if (( $WIDTH>=70 )) ; then
+    screenfetch -E
+  else
+    screenfetch -Ep
+  fi
 fi
