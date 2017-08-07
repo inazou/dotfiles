@@ -70,7 +70,7 @@ if [ -f /usr/local/etc/bash_completion ] ; then
 fi
 
 # ログイン時にscreenfetchでロゴ表示
-if type screenfetch >/dev/null 2>&1; then
+if type screenfetch >/dev/null 2>&1 && tput cols >/dev/null 2>&1; then
   WIDTH=`tput cols`
   if (( $WIDTH>80 )) ; then
     screenfetch -E
