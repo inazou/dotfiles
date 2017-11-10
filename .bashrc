@@ -46,6 +46,7 @@ alias rm="rm -v -i"
 alias cp="cp -v -i"
 alias mv="mv -v -i"
 alias sudo="sudo "
+alias ssh="ssh-color"
 # cdしたらlsする
 cdls ()
 {
