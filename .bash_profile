@@ -23,3 +23,14 @@ export PATH=$COCOS_X_ROOT:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+source $HOME/perl5/perlbrew/etc/bashrc
+perlbrew use 5.16.3
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+
+export PATH=$HOME/.ndenv/bin:$PATH
+eval "$(ndenv init -)"
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
