@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOT_DIR=`pwd`
+BACKUP_DIR="${DOT_DIR}/backup/"
 
 echo $'\e[36m       __      __  _____ __         \e[m'
 echo $'\e[36m  ____/ /___  / /_/ __(_) /__  _____\e[m'
@@ -19,7 +20,13 @@ do
   [[ "$f" == ".gitignore" ]] && continue
 
   echo "$f"
-  ln -sfn ${DOT_DIR}/${f} $HOME/${f}
+  dotfile="$HOME/${f}"
+  if [ -e ${dotfile} ] && [ ! -L ${dotfile} ]; then
+    echo "${dotfile} is already exists. Move ${dotfile} to ${BACKUP_DIR}"
+    mv -v ${dotfile} ${BACKUP_DIR}
+  fi
+
+  ln -sfn ${DOT_DIR}/${f} ${dotfile}
 done
 
 echo
