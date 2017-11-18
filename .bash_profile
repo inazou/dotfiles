@@ -24,13 +24,16 @@ export PATH=$COCOS_X_ROOT:$PATH
 export COCOS_TEMPLATES_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 
-source $HOME/perl5/perlbrew/etc/bashrc
-perlbrew use 5.16.3
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+if [ -e $HOME/perl5/perlbrew/etc/bash ]; then
+  source $HOME/perl5/perlbrew/etc/bashrc
+  perlbrew use 5.16.3
+fi
 
+export PATH=$HOME/.rbenv/bin:$PATH
+if type rbenv > /dev/null 2>&1; then
+ eval "$(rbenv init -)"
+fi
 export PATH=$HOME/.ndenv/bin:$PATH
-eval "$(ndenv init -)"
-
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+if type ndenv > /dev/null 2>&1; then
+  eval "$(ndenv init -)"
+fi
