@@ -7,5 +7,6 @@ all: setup
 
 .PHONY: setup
 setup:
+	@$(SCRIPT_DIR)/PrintLogo.sh
 	@$(SCRIPT_DIR)/LinkFiles.sh
 	@$(SCRIPT_DIR)/SetupVim.sh
