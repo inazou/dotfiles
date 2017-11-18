@@ -6,4 +6,5 @@ backup/*
 .vim/backup/*
 .vim/swap/*
 .vim/undo/*
+.tmux/plugins/*
 !.gitkeep
