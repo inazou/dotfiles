@@ -7,4 +7,5 @@ backup/*
 .vim/swap/*
 .vim/undo/*
 .tmux/plugins/*
+.tmux/resurrect/*
 !.gitkeep
