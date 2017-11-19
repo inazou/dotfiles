@@ -82,6 +82,9 @@ fi
 
 # tmuxが起動していたら、プラグインのインストールと更新をする
 if [ ! -z $TMUX ]; then
-  $HOME/.tmux/plugins/tpm/bindings/install_plugins
-  $HOME/.tmux/plugins/tpm/bindings/update_plugins
+  # 1.9以上でなければプラグインに触れない
+  if [[ `tmux -V` =~ .*1.9.* ]] || [[ `tmux -V` =~ .*2.* ]]; then
+    $HOME/.tmux/plugins/tpm/bindings/install_plugins
+    $HOME/.tmux/plugins/tpm/bindings/update_plugins
+  fi
 fi
