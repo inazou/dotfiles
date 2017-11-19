@@ -79,3 +79,9 @@ if type screenfetch >/dev/null 2>&1 && tput cols >/dev/null 2>&1; then
     screenfetch -Ep
   fi
 fi
+
+# tmuxが起動していたら、プラグインのインストールと更新をする
+if [ ! -z $TMUX ]; then
+  $HOME/.tmux/plugins/tpm/bindings/install_plugins
+  $HOME/.tmux/plugins/tpm/bindings/update_plugins
+fi
