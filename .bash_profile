@@ -24,7 +24,7 @@ export PATH=$COCOS_X_ROOT:$PATH
 export COCOS_TEMPLATES_ROOT=/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 
-if [ -e $HOME/perl5/perlbrew/etc/bash ]; then
+if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
   source $HOME/perl5/perlbrew/etc/bashrc
   perlbrew use 5.16.3
 fi
