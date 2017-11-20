@@ -8,4 +8,5 @@ backup/*
 .vim/undo/*
 .tmux/plugins/*
 .tmux/resurrect/*
+.cache/*
 !.gitkeep
