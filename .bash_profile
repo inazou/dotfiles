@@ -8,7 +8,6 @@ if type anyenv > /dev/null 2>&1; then
   eval "$(anyenv init -)"
 fi
 
-
 PATH=$PATH:$HOME/bin
 export PATH
 
@@ -37,3 +36,7 @@ export PATH=$HOME/.ndenv/bin:$PATH
 if type ndenv > /dev/null 2>&1; then
   eval "$(ndenv init -)"
 fi
+
+# go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
