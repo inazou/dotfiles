@@ -8,13 +8,10 @@ nmap :Q :q
 " 表示設定
 "-----------------------------------------------
 set number "行番号を表示する
-set laststatus=2 "ステータスラインを表示
-set statusline=%<%F%m%r%h%w\ %y[%{&fenc}][%{&ff}]%=%c/%{col('$')-1},%l/%L%11p%% "ステータスラインの表示設定
-set title "編集中のファイル名を表示
 syntax on "コードの色分け
 set completeopt=menuone "vim補完でScratchを表示しない
 set t_Co=256 "256色使えるようにする
-
+set laststatus=2 "ステータスバーを表示
 "---------------------------
 "文字コードの設定
 "---------------------------
@@ -22,40 +19,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8,sjis,iso-2022-jp,euc-jp
 set fileformats=unix,dos,mac
-"---------------------------
-
-"---------------------------
-" 挿入モード時、ステータスラインの色を変更
-"---------------------------
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-  endif
-endfunction
-
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
 "---------------------------
 
 "---------------------------
@@ -441,6 +404,12 @@ let g:gundo_close_on_revert = 1
 " sudo.vim 自分の.vimrcでsudo viできる
 "---------------------------
 NeoBundle 'vim-scripts/sudo.vim'
+"---------------------------
+
+"---------------------------
+" lightline.vim ステータスバーのプラグイン
+"---------------------------
+NeoBundle 'itchyny/lightline.vim'
 "---------------------------
 
 call neobundle#end()
